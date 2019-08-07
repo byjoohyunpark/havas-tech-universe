@@ -1,15 +1,17 @@
 class Particle {
-  float x, y, r;
+  float x, y;
   int lifeTime;
   PVector pos, ppos, vel, acc, cntr;
   boolean os;
   color c;
   float op;
+  float radius ;
 
   Particle() {
     x = random(width);
     y = random(height);
-    r = 0;
+    //r = 0;
+    radius = random(3);
     cntr = the_cntr.pos.copy();
     pos = new PVector(x, y);
     ppos = new PVector(x, y);
@@ -33,7 +35,7 @@ class Particle {
     //strokeWeight(1);
     //line(ppos.x, ppos.y, pos.x, pos.y);
     fill(c, op); 
-    ellipse(ppos.x, ppos.y, 1, 1);
+    ellipse(ppos.x, ppos.y, radius, radius);
   }
 
   void update() {
@@ -45,11 +47,9 @@ class Particle {
     pos.add(vel);
     acc.mult(0);  
     lifeTime++;
-    if (r < 6) {
-      r+= .1;
-    }
+
     if (op < 255) {
-      op += 10;
+      op += random(8, 12);
     }
   }
   

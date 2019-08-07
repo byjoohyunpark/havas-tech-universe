@@ -9,8 +9,8 @@ CenterMover the_cntr;
  float min = 1000 ; 
  float max = 1500 ; 
  PImage img ;
- int scaleValue ;
-
+ int number = 1000;
+ int maxCount = 3000;
 
 void setup() {
      fullScreen(FX2D);
@@ -19,7 +19,7 @@ void setup() {
      noStroke();
     //noCursor();
     
-    scaleValue = width/512 ;
+   
   
     //kinect2 = new Kinect2(this);
     //kinect2.initDepth();
@@ -36,8 +36,8 @@ void draw() {
    rect(0, 0, width, height);
    fill(255);
    
-// add skin particle
-    for (int i = 0; i < 10*scaleValue; i++) {
+  
+    for (int i = 0; i < number; i++) {
     p.add(new Particle());
   }
   for (Particle i : p) {
@@ -90,7 +90,7 @@ for (int x = 0; x <  width; x++) {
 
 void killParticles() {
   for (int i = p.size() - 1; i >=0; i--) {
-    if (p.get(i).isOffScreen()|| p.size()>20000) {
+    if (p.get(i).isOffScreen()|| p.size()>maxCount) {
       p.remove(i);
     }
   }
