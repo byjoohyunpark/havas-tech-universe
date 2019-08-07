@@ -10,7 +10,7 @@ CenterMover the_cntr;
  float max = 1500 ; 
  PImage img ;
  int number = 1000;
- int maxCount = 3000;
+ int maxCount = 2000;
 
 void setup() {
      fullScreen(FX2D);
@@ -20,7 +20,6 @@ void setup() {
     //noCursor();
     
    
-  
     //kinect2 = new Kinect2(this);
     //kinect2.initDepth();
     //kinect2.initDevice();    

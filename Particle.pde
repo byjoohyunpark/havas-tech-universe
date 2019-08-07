@@ -19,9 +19,9 @@ class Particle {
     acc = new PVector(0, 0);
     lifeTime = 0;
     op = 0;
-    if (random(100) < 15) {    
+    if (random(100) < 10) {    
       if (random(100) < 90) {        
-        c = color(100, 0, 255);
+        c = color(82, 0, 255);
       } else {
         c = color(255, 255, 0);
       }
@@ -31,9 +31,6 @@ class Particle {
   }
 
   void show() {
-    //stroke(c, op);
-    //strokeWeight(1);
-    //line(ppos.x, ppos.y, pos.x, pos.y);
     fill(c, op); 
     ellipse(ppos.x, ppos.y, radius, radius);
   }
