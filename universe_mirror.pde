@@ -8,16 +8,19 @@
   float min = 500 ; 
   float max = 2200 ; 
   PImage img ;
-  int number = 1000;
-  int maxCount = 2000;
+  int number = 2000;
+  int maxCount = 4000;
  
-  int w = 512 ;
-  int h = 424 ;
- 
+  int w;
+  int h;
+  
 
   void setup() {
-     //fullScreen();
-     size(512, 424);
+     //fullScreen(FX2D);
+     size(800, 800);
+         
+     w =  800;// width; 
+     h = 800;// height; 
      
      noStroke();
     //noCursor();
@@ -28,19 +31,15 @@
      kinect2.initDevice();    
      img = createImage( kinect2.depthWidth,  kinect2.depthHeight, RGB);
     
-    println( kinect2.depthWidth);
-    println( kinect2.depthHeight);    
-    
     //img = createImage(w, h, ARGB);
 
      p = new ArrayList<Particle>();
-     the_cntr = new CenterMover(w/2, h/2);
+     the_cntr = new CenterMover(kinect2.depthWidth/2, kinect2.depthHeight/2);
 }
 
 void draw() {
    fill(0, 100);
    rect(0, 0, w, h);
-   //fill(255);
    
     for (int i = 0; i < number; i++) {
     p.add(new Particle());

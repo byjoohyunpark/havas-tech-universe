@@ -10,7 +10,7 @@ class Particle {
   Particle() {
     x = random(w);
     y = random(h);
-    //r = 0;
+    
     radius = random(3);
     cntr = the_cntr.pos.copy();
     pos = new PVector(x, y);
