@@ -1,21 +1,26 @@
 //import org.openkinect.processing.*;
 
-//skin
 ArrayList <Particle> p;
 CenterMover the_cntr;
 
-// The kinect stuff is happening in another class
 //Kinect2 kinect2;
  float min = 1000 ; 
  float max = 1500 ; 
+ 
  PImage img ;
  int number = 1000;
  int maxCount = 2000;
+ 
+ int w = 800;
+ int h = 800;
+ 
+ color bgColor = color(0);
+ color c = color(255);
 
 void setup() {
-     fullScreen(FX2D);
-     //fullScreen(P3D);
-     background(0);
+     //fullScreen(FX2D);
+    size(800, 800);
+    
      noStroke();
     //noCursor();
     
@@ -24,17 +29,16 @@ void setup() {
     //kinect2.initDepth();
     //kinect2.initDevice();    
     //img = createImage(kinect2.depthWidth, kinect2.depthHeight, RGB);
-    img = createImage(width, height, ARGB);
+    img = createImage(w, h, ARGB);
 
      p = new ArrayList<Particle>();
-    the_cntr = new CenterMover(width/2, height/2);
+    the_cntr = new CenterMover(w/2, h/2);
 }
 
 void draw() {
-   fill(0, 100);
-   rect(0, 0, width, height);
-   fill(255);
-   
+  background(bgColor, 100);
+   //fill(bgColor, 100);
+   //rect(0, 0, w, h);
   
     for (int i = 0; i < number; i++) {
     p.add(new Particle());
@@ -48,10 +52,10 @@ void draw() {
  img.loadPixels();
  
 
-for (int x = 0; x <  width; x++) {
-      for (int y = 0; y < height; y++) {
+for (int x = 0; x <  w; x++) {
+      for (int y = 0; y < h; y++) {
    int clr = get(x, y);
-   img.pixels[x + y * width] = color(clr);
+   img.pixels[x + y * w] = color(clr);
       }}
  
 //    //for (int x = 0; x < kinect2.depthWidth; x++) {
@@ -82,7 +86,7 @@ for (int x = 0; x <  width; x++) {
 //    //  }
 //    //}
     img.updatePixels();
-    image(img, 0, 0, width, height);
+    image(img, 0, 0, w, h);
 }
 
 
@@ -93,4 +97,10 @@ void killParticles() {
       p.remove(i);
     }
   }
+}
+
+
+void keyPressed() {
+  bgColor = color(random(255), random(255), random(255));
+   c = color(random(255), random(255), random(255));
 }
