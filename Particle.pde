@@ -11,7 +11,7 @@ class Particle {
     x = random(w);
     y = random(h);
     
-    radius = random(3);
+    radius = random(2);
     cntr = the_cntr.pos.copy();
     pos = new PVector(x, y);
     ppos = new PVector(x, y);
