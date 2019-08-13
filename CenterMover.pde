@@ -22,21 +22,21 @@ class CenterMover {
   }
 
   void edges() {
-    if (pos.x < width / 2 - 250) {
+    if (pos.x < w / 2 - 250) {
       vel.x *= -1;
-      pos.x = width / 2 - 250;
+      pos.x = w / 2 - 250;
     }
-    if (pos.x > width / 2 + 250) {
+    if (pos.x > w / 2 + 250) {
       vel.x *= -1;
-      pos.x = width / 2 + 250;
+      pos.x = w / 2 + 250;
     }
-    if (pos.y < height / 2 - 100) {
+    if (pos.y < h / 2 - 100) {
       vel.y *= -1;
-      pos.y = height / 2 - 100;
+      pos.y = h / 2 - 100;
     }
-    if (pos.y > height / 2 + 100) {
+    if (pos.y > h / 2 + 100) {
       vel.y *= -1;
-      pos.y = height / 2 + 100;
+      pos.y = h / 2 + 100;
     }
   }
 }

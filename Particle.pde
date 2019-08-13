@@ -8,8 +8,8 @@ class Particle {
   float radius ;
 
   Particle() {
-    x = random(width);
-    y = random(height);
+    x = random(w);
+    y = random(h);
     //r = 0;
     radius = random(3);
     cntr = the_cntr.pos.copy();
@@ -76,7 +76,7 @@ class Particle {
   
   
   boolean isOffScreen() {
-    if (pos.x < 0 || pos.x > width || pos.y < 0 || pos.y > height) {
+    if (pos.x < 0 || pos.x > w || pos.y < 0 || pos.y > h) {
       return true;
     } else {
       return false;

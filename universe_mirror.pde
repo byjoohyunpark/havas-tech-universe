@@ -1,44 +1,51 @@
-//import org.openkinect.processing.*;
+  import org.openkinect.processing.*;
+  Kinect2 kinect2;
+ 
+ 
+  ArrayList <Particle> p;
+  CenterMover the_cntr;
 
-//skin
-ArrayList <Particle> p;
-CenterMover the_cntr;
+  float min = 500 ; 
+  float max = 2200 ; 
+  PImage img ;
+  int number = 1000;
+  int maxCount = 2000;
+ 
+  int w = 512 ;
+  int h = 424 ;
+ 
 
-// The kinect stuff is happening in another class
-//Kinect2 kinect2;
- float min = 1000 ; 
- float max = 1500 ; 
- PImage img ;
- int number = 1000;
- int maxCount = 2000;
-
-void setup() {
-     fullScreen(FX2D);
-     //fullScreen(P3D);
-     background(0);
+  void setup() {
+     //fullScreen();
+     size(512, 424);
+     
      noStroke();
     //noCursor();
     
-   
-    //kinect2 = new Kinect2(this);
-    //kinect2.initDepth();
-    //kinect2.initDevice();    
-    //img = createImage(kinect2.depthWidth, kinect2.depthHeight, RGB);
-    img = createImage(width, height, ARGB);
+    
+     kinect2 = new Kinect2(this);
+     kinect2.initDepth();
+     kinect2.initDevice();    
+     img = createImage( kinect2.depthWidth,  kinect2.depthHeight, RGB);
+    
+    println( kinect2.depthWidth);
+    println( kinect2.depthHeight);    
+    
+    //img = createImage(w, h, ARGB);
 
      p = new ArrayList<Particle>();
-    the_cntr = new CenterMover(width/2, height/2);
+     the_cntr = new CenterMover(w/2, h/2);
 }
 
 void draw() {
    fill(0, 100);
-   rect(0, 0, width, height);
-   fill(255);
+   rect(0, 0, w, h);
+   //fill(255);
    
-  
     for (int i = 0; i < number; i++) {
     p.add(new Particle());
-  }
+    }
+  
   for (Particle i : p) {
     i.update();
     i.show(); 
@@ -47,42 +54,35 @@ void draw() {
   
  img.loadPixels();
  
-
-for (int x = 0; x <  width; x++) {
-      for (int y = 0; y < height; y++) {
-   int clr = get(x, y);
-   img.pixels[x + y * width] = color(clr);
-      }}
  
-//    //for (int x = 0; x < kinect2.depthWidth; x++) {
-//    //  for (int y = 0; y < kinect2.depthHeight; y++) {
-//    //    // mirroring image
-//    //    int offset = x + y * kinect2.depthWidth;
-//    //    // Raw depth
-//    //    int rawDepth = depth[offset];
+//for (int x = 0; x <  w; x++) {
+//      for (int y = 0; y < h; y++) {
+//   int clr = get(x, y);
+//   img.pixels[x + y * w] = color(clr);
+//      }}
+ 
+ int[] depth = kinect2.getRawDepth();
+ 
+    for (int x = 0; x < kinect2.depthWidth; x++) {
+      for (int y = 0; y < kinect2.depthHeight; y++) {
+        // mirroring image
+        int offset = x + y * kinect2.depthWidth;
+        // Raw depth
+        int rawDepth = depth[offset];
         
-//    //    int clr = get(x, y);
+        int clr = get(x, y);
         
-//    //    if (rawDepth > min && rawDepth < max && x < kinect2.depthWidth/2 ) {
-//    //     img.pixels[offset] = color(clr) ; 
-//    //      sumX += x; 
-//    //      sumY += y;
-//    //      count++; 
-//    //    }
+        if(rawDepth > min && rawDepth < max){
+           img.pixels[offset] = color(clr) ; 
+        }
+        else {
+          img.pixels[offset] = color(0);
+        }
+      }
+    }
 
-//    //     else if (rawDepth > min && rawDepth < max && x >= kinect2.depthWidth/2 ) {
-//    //     img.pixels[offset] = color(clr) ;
-//    //      sumX2 += x;
-//    //      sumY2 += y;
-//    //      count2++;
-//    //    }
-//    //    else {
-//    //      img.pixels[offset] = color(0);
-//    //    }
-//    //  }
-//    //}
     img.updatePixels();
-    image(img, 0, 0, width, height);
+    image(img, 0, 0, w, h);
 }
 
 
