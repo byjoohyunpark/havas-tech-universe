@@ -8,19 +8,19 @@
   float min = 500 ; 
   float max = 2200 ; 
   PImage img ;
-  int number = 5000;
-  int maxCount = 6000;
+  int number = 20000;
+  int maxCount = 30000;
  
   int w;
   int h;
   
 
   void setup() {
-     //fullScreen(FX2D);
-     size(800, 800);
+     fullScreen();
+     //size(800, 800);
          
-     w =  800;  // width; 
-     h = 800;  // height; 
+     w =  width; 
+     h =  height; 
      
      noStroke();
     //noCursor();
