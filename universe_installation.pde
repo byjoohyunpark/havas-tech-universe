@@ -8,15 +8,15 @@
   float min = 500 ; 
   float max = 2200 ; 
   PImage img ;
-  int number = 20000;
-  int maxCount = 30000;
+  int number = 20000 ;
+  int maxCount = 30000 ;
  
   int w;
   int h;
   
 
   void setup() {
-     fullScreen();
+     fullScreen(FX2D);
      //size(800, 800);
          
      w =  width; 
@@ -38,7 +38,7 @@
 }
 
 void draw() {
-   fill(0, 100);
+   fill(0,0,0, 20);
    rect(0, 0, w, h);
    
     for (int i = 0; i < number; i++) {
